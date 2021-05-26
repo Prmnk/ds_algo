@@ -48,11 +48,11 @@ class linked_list:
     def insert_at_begin(self,new_data):
         new_node = Node(new_data)
         self.size += 1
-
+        
         if self.head is None:
             self.head = new_node
             return
-
+        
         new_node.next_node = self.head
         self.head = new_node
 
@@ -138,10 +138,10 @@ class linked_list:
             current = next #change for next loop
         self.head = prev # update head of the linked list
 
-    def reverse_ll_recursive(self,prev = None):
-        self.print_list()
-        current = self.head
-        next = current.next_node
+    def reverse_ll_recursive(self,head):
+        current = head
+        prev = None
+        next = None
         
         current.next_node = prev
         prev = current
@@ -149,6 +149,68 @@ class linked_list:
         if next == None or current is None:
             return current
         self.reverse_ll_recursive(prev)
+
+    def reverse_batch(self, head, k):
+        if head.next_node == None or head is None: 
+            return current
+        
+        current = head
+        prev = None
+        next = None
+        ct = 0
+
+        while (current is not None and ct < k):
+            next = current.next_node
+            current.next_node = prev
+            prev = current
+            current = next
+            ct = ct + 1
+            self.print_list()
+            
+   
+        if next is not None:
+            head.next_node = self.reverse_batch(next,k)
+
+        return prev
+
+    def reverse(self, head, k):
+       
+        if head == None:
+            return None
+        current = head
+        next = None
+        prev = None
+        count = 0
+ 
+        # Reverse first k nodes of the linked list
+        while(current is not None and count < k):
+            next = current.next_node
+            current.next_node = prev
+            prev = current
+            current = next
+            count += 1
+
+ 
+        
+        print(head.data, count)
+        if next is not None:
+            head.next_node = self.reverse(next, k)
+        print(head.data)
+        # prev is new head of the input list
+        return prev
+
+
+    def middle_node(self):
+        slow = self.head
+        fast = self.head
+
+        while fast is not None and fast.next_node is not None:
+            slow = slow.next_node
+            fast = fast.next_node.next_node
+
+        return slow.data
+
+        
 
 
 
@@ -162,16 +224,26 @@ if __name__ == '__main__':
 
     l_lst.head.next_node= second
     second.next_node = third
-
+    
     l_lst.insert_at_begin(0)
     l_lst.insert_after(l_lst.head.next_node,1.5)
     l_lst.insert_at_end(4)
+    l_lst.insert_at_end(5)
+    l_lst.insert_at_end(6)
+    l_lst.insert_at_end(7)
+    
+
     print('a')
     l_lst.print_list()
-    l_lst.delete_node_data(3)
+    print(l_lst.middle_node())
+    #l_lst.delete_node_data(3)
     #l_lst.reverse_ll()
-    #l_lst.reverse_ll_recursive(None)
+    #l_lst.print_list()
+    l_lst.reverse(l_lst.head,3)
     l_lst.print_list()
+    
+    print(l_lst.list_length())
+    '''
     l_lst.delete_node_pos(2)
     l_lst.print_list()
     print(l_lst.list_length())
@@ -179,6 +251,6 @@ if __name__ == '__main__':
     l_lst.delete_full_list()
     l_lst.print_list()
     print(l_lst.list_length())
-
+    '''
 
 
