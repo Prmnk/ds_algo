@@ -211,7 +211,7 @@ class linked_list:
         return slow.data
 
         
-
+    def 
 
 
 
