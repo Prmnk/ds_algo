@@ -30,7 +30,6 @@ def printcurrentlevel(root,level):
     if level==1: #exit condition 2
         print(root.data, end = " ")
     else:
-        print ("-->" , str(level))
         printcurrentlevel(root.left, level-1)
         printcurrentlevel(root.right,level-1)
 
