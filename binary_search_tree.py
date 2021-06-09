@@ -53,10 +53,46 @@ class bst(object):
         if node.left:
             self.traverseinorder(node.left) # first left
 
-        print("%s " % node.data) # then root
+        print("%s " % node.data) # print node data
 
         if node.right:
             self.traverseinorder(node.right) # then right
+
+    def removeNode(self,data,node):
+        if not node:
+            return node
+
+        if data < node.data:
+            node.left = self.removeNode(data, node.left)
+        elif data > node.data:
+            node.right = self.removeNode(data, node.right)
+        else:
+            if not node.left and not node.right:
+                del node
+                return None
+            if not node.left:
+                tmpNode = node.right
+                del node
+                return tmpNode
+            if not node.right:
+                tmpNode = node.left
+                del node
+                return tmpNode
+            tmpnode = self.left_tree_max(node.left)
+            node.data = tmpnode.data
+            node.left = self.removeNode(tmpnode.data, node.left)
+        return node
+
+
+    def left_tree_max(self,node):
+        if node.right:
+             return self.left_tree_max(node.right)       
+        return node
+
+    def remove(self,data):
+        if self.root:
+            self.root = self.removeNode(data, self.root)
+   
 
 
 bst = bst()
@@ -65,9 +101,14 @@ bst.insert(5)
 bst.insert(6)
 bst.insert(12)
 bst.insert(11)
+bst.insert(4)
+bst.insert(1)
 
 print(bst.getminval())
 
+bst.traverse()
+
+bst.remove(5)
 bst.traverse()
 
     
