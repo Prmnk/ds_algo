@@ -1,34 +1,40 @@
-l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-t = 100
+n= [5,1,6]
 
-  
-# output list
-def combo_sum(Target, N):
-    
-    arr = [i**N for i in range(1,int(Target**(1/2)+1))]
-      
-    def combo_sum_rec(Target,arr,partial=[]):
-        cnt = 0
-        total = sum(partial)
-        if Target == total :
-            cnt += 1
-            print(partial,Target, cnt)
-            
-        if total >= Target:
-            return cnt
 
+import functools
+import itertools
+
+def superdig(n):
+    sum = 0 
+
+    def super_dig_rec(arr,idx,tot):
+        if idx == len(arr)-1:
+            return tot
+        
         for i in range(len(arr)):
-            arr_left = arr[i+1:]
-            cnt += combo_sum_rec(Target,arr_left,partial + [arr[i]])
-        
-        return cnt
-        
-    
-    x = combo_sum_rec(Target,arr)
-    return x
+            n = arr[i]
+            new_arr = arr[i+1:]
+            tot = functools.reduce()
+            super_dig_rec(new_arr,)
 
 
-print(combo_sum(100, 3))
+    return super_dig_rec(n)
+
+
+def combination_xor(arr):
+    res = 0
+    for i in range(1, len(arr)+1):
+        for arry in itertools.combinations(arr,i):
+            su = functools.reduce(lambda x,y: x^y,list(arry))
+            res += su
+    return res
+
+
+
+     
+
+
+print(combination_xor(n))
        
             
                 
