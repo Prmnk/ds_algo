@@ -73,3 +73,45 @@ llist.head = llist.reverse(llist.head, 3)
  
 print ("\nReversed Linked list")
 llist.printList()
+
+#https://leetcode.com/problems/merge-two-sorted-lists/submissions/
+#Definition for singly-linked list.
+# merge 2 sorted linked list
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        
+        res_1 = ListNode(0)  
+        res = res_1
+        
+        
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+        
+        while True:
+            
+            while l1 and (l2 is None or l1.val <= l2.val) :
+                res.next = ListNode(l1.val)
+                l1 = l1.next
+                res = res.next
+                #print (res)
+                
+            while l2 and ( l1 is None or l2.val <= l1.val)  :
+                res.next = ListNode(l2.val)
+                l2 = l2.next
+                res = res.next
+                #print (res)
+            
+            if l1 is None and l2 is None:
+                break
+                        
+                        
+        return res_1.next
+
+
