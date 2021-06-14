@@ -96,9 +96,92 @@ def prime(n):
 print(prime(20))
 
 
+# recognise palindrome 
 
-
-
-
+def isPalindrome(self, s: str) -> bool:
+    
+    if len(s)<2:
+        return True
+    
+    left = 0
+    right = len(s)-1        
+    
+    while left < right:       
+        
+        while left < right and not (s[left].isdigit() or s[left].isalpha()):
+            left +=1
+        while left < right and not (s[right].isdigit() or s[right].isalpha()):
+            right -=1           
+        
+        if s[right].isalpha() and s[left].isalpha() and s[left].lower() == s[right].lower():
+            left += 1
+            right -= 1
+        elif  s[right].isdigit() and s[left].isdigit() and s[left] == s[right]:
+            left += 1
+            right -= 1
+        elif left >= right:
+            return True
+        else:
+            #print (left,right,s[left], s[right],len(s))
+            return False
+        
+    return True
+        
+        
+def breakPalindrome(self, palindrome: str) -> str:
+    le = len(palindrome)
+    src = 'abcdefghijklmnopqrstuvwxyz'
+    pos = ''
+    idx = 0
+    
+    if le < 2:
+        return ''
+    
+    if le%2==0: 
+        loop = le/2 
+    else: 
+        loop = (le-1)/2
+    
+    
+    for i in range(len(src)):
+        for j in range(int(loop)):
+            if src[i] != palindrome[j]:
+                break
+            else:
+                continue
+            break
+        else:
+            continue
+        break
             
+    pos = src[i] 
+    idx = j
+    
+    if palindrome[j]=='a':
+        idx = le-1-j
+    res = palindrome[:idx] + pos + palindrome[idx + 1:]
+    
+    return res
+
+def minOperations( nums) :
+    
+    base_diff = nums[0]
+    tick = 0
+    cnt = 0
+    
+    for i in range(1,len(nums)):
+        curr_diff =  nums[i]-i
+        
+        if base_diff < curr_diff  :
+            base_diff = curr_diff
+            tick = 1
+        
+        cnt = cnt + base_diff - curr_diff
+
+        print (i,nums[i], base_diff, curr_diff, cnt,tick)
+        
+            
+    return cnt
+        
                 
+print(minOperations([6,8,10,1,4,3,9,10,3,2]))
