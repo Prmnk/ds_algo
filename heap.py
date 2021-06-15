@@ -2,7 +2,7 @@ class Heap(object):
     HEAP_SIZE = 10
 
     def __init__(self):
-        self.head = [0] * HEAP_SIZE
+        self.head = [0] * self.HEAP_SIZE
         self.currentPosition = -1
 
     def insert(self,item):

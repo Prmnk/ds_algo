@@ -75,6 +75,8 @@ print (dict_1)
 print(dict_2)
 
 
+
+
 # Set comprehension
 
 num_5 = [1,1,3,4,2,4,2,5,6,1,4,6,7,7,8,9]
@@ -89,3 +91,4 @@ print(set_1)
 print(set_2)
 
 
+print (dict_1.items(), dict_1.keys(), dict_1.values())

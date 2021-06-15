@@ -210,8 +210,7 @@ class linked_list:
 
         return slow.data
 
-        
-    def 
+  
 
 
 
@@ -252,5 +251,4 @@ if __name__ == '__main__':
     l_lst.print_list()
     print(l_lst.list_length())
     '''
-
 
