@@ -132,7 +132,6 @@ def combo_sum(Target, N):
         total = sum(partial)
         if Target == total :
             cnt += 1
-            print(partial,Target, cnt)
             
         if total >= Target:
             return cnt

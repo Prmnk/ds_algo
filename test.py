@@ -185,3 +185,20 @@ def minOperations( nums) :
         
                 
 print(minOperations([6,8,10,1,4,3,9,10,3,2]))
+
+
+def basic_sort(nums):
+
+    for i in range(len(nums)-1):
+        for j in range(len(nums)-1-i):
+            if nums[j+1]<nums[j]:
+                tmp = nums[j]
+                nums[j]=nums[j+1]
+                nums[j+1] = tmp
+    
+    return nums
+
+
+print (basic_sort([6,-3,4,88,3,2]))
+
+print (basic_sort(['a','v','b','h','c','z']))

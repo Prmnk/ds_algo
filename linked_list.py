@@ -152,7 +152,7 @@ class linked_list:
 
     def reverse_batch(self, head, k):
         if head.next_node == None or head is None: 
-            return current
+            return 
         
         current = head
         prev = None
@@ -209,6 +209,19 @@ class linked_list:
             fast = fast.next_node.next_node
 
         return slow.data
+
+    def circular(self):
+        slow = self.head
+        fast = self.head
+
+        while fast is not None and fast.next_node is not None:
+            slow = slow.next_node
+            fast = fast.next_node.next_node
+            if slow is  fast:
+                return True
+
+        return False
+
 
   
 
