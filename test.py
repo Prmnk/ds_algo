@@ -202,3 +202,41 @@ def basic_sort(nums):
 print (basic_sort([6,-3,4,88,3,2]))
 
 print (basic_sort(['a','v','b','h','c','z']))
+
+
+
+def mostCommonWord( paragraph, banned) -> str:
+    dict = {}
+    max = 0
+    rs = ''
+    
+    para = ''.join(e for e in paragraph if e.isalnum() or e == ' ')
+
+    print (para)
+    
+    for i in para.lower().split(" "):
+        if i in banned:
+            continue
+            
+        if i in dict.keys():
+            dict[i] = dict[i] +1
+            if dict[i]>=max: 
+                rs = i
+                max = dict[i]
+        else:
+            dict[i] = 1
+            if dict[i]>=max: 
+                rs = i
+                max = dict[i]
+    
+    return rs
+
+
+#print(mostCommonWord("a, a, a, a, b,b,b,c, c","a"))
+
+st = 'abcdefg'
+
+st[3] = 't'
+
+
+print(st[:])
