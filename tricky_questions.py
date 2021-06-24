@@ -90,3 +90,75 @@ def detectCycle( head):
     while node is not slow:
         node, slow = node.next, slow.next
     return node
+
+def maxRepeating(sequence: str, word: str) -> int:
+    le_word = len(word)
+    le_seq = len(sequence)
+    cnt, i = 0,0
+    
+    if word == sequence:
+        return 1
+    while i < le_seq:
+        print(i)
+        if sequence[i:i+le_word] == word:
+            cnt +=1
+            i += le_word
+            print(str(cnt), word)
+            print(i)
+        else:
+            i += 1
+            
+    return cnt
+
+print(maxRepeating("aaabaaaabaaabaaaabaaaabaaaabaaaaba","aaaba"))
+
+
+def maxSubArray( nums):
+	if len(nums)==1:
+		return nums[0]
+	arr=[]
+	s=0
+	flag=1 #To check if in nums all are -ve, If all -ve then flag=1
+	for i in range(len(nums)):
+		s=s+nums[i]
+		if nums[i]>0:
+			flag=0
+		if s<0:   # It will make sum zero whenever sum is going -ve
+			s=0  
+		arr.append(s)
+	if flag==1: # Handling when nums array consists of all -ve integers
+		return max(nums)
+	return max(arr)
+
+def findShortestSubArray(nums) :
+    
+    left, right, count = {}, {}, {}
+    for i, x in enumerate(nums):
+        if x not in left: left[x] = i
+        right[x] = i
+        count[x] = count.get(x, 0) + 1
+           
+    ans = len(nums)
+    degree = max(count.values())
+    
+    for x in count:
+        if count[x] == degree:
+            ans = min(ans, right[x]- left[x] + 1)
+            
+    return ans
+
+def maxProfit( prices, fee) :
+    
+    max_profit = 0
+    min_price = prices[0]
+    
+    for i in range(len(prices)):
+        
+        if prices[i]< min_price:
+            min_price = prices[i]
+        elif prices[i] > min_price + fee:
+            max_profit += (prices[i]- min_price -fee)
+            min_price = prices[i] - fee
+        
+            
+    return max_profit
