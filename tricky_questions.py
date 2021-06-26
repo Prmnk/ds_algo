@@ -162,3 +162,30 @@ def maxProfit( prices, fee) :
         
             
     return max_profit
+
+
+for i, c in enumerate('bdbdbd'):
+    print (i,c)
+
+from collections import defaultdict
+
+def longestPalindrome(self, s: str) -> int:
+    res = 0
+    hash_t = defaultdict(int)
+    
+    for i in s:
+        hash_t[i] +=1 
+        
+    
+    if len(s)==1:
+        return 1
+    elif len(s) ==2 and len(hash_t.keys()) ==2:
+        return 1
+    else:
+        for j in hash_t.keys():
+            res += hash_t[j]//2 * 2
+            if res%2 == 0 and hash_t[j] %2 ==1 :
+                res += 1
+    
+        
+    return res

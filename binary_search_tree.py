@@ -92,6 +92,29 @@ class bst(object):
     def remove(self,data):
         if self.root:
             self.root = self.removeNode(data, self.root)
+
+def hasPathSum(self, root, targetSum):
+    
+    self.sum = 0
+    
+    def traverse(node, curr_sum):
+        
+        if not node:
+            return
+     
+        curr_sum += node.val
+        
+        if node.left is None and node.right is None :
+            if curr_sum == targetSum:
+                return True
+            else:
+                return False
+            
+        
+        return traverse(node.left, curr_sum) or traverse(node.right,curr_sum)
+        
+    
+    return traverse(root,0)
    
 
 
