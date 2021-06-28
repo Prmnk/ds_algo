@@ -115,8 +115,29 @@ def hasPathSum(self, root, targetSum):
         
     
     return traverse(root,0)
-   
 
+
+def sorted_array_to_tree(arr):
+    if not arr:
+        return None
+
+    mid = len(arr)//2
+
+    root = Node(arr[mid])
+
+    root.left =   sorted_array_to_tree(arr[:mid])
+    root.right = sorted_array_to_tree(arr[mid+1:])
+
+    return root
+
+
+def preOrder(node):
+    if not node:
+        return
+      
+    print (node.data)
+    preOrder(node.left)
+    preOrder(node.right)
 
 bst = bst()
 bst.insert(10)
@@ -133,6 +154,10 @@ bst.traverse()
 
 bst.remove(5)
 bst.traverse()
+
+arr = [1, 2, 3, 4, 5, 6, 7]
+root = sorted_array_to_tree(arr)
+preOrder(root)
 
     
 

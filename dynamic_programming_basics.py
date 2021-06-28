@@ -209,4 +209,27 @@ def isSubsequence( s: str, t: str) :
 s = 'ab'
 d = 'baab'
 
-print(isSubsequence(s,d))
+#print(isSubsequence(s,d))
+
+def gen_array(n):
+    res = []
+    res_max = 0
+    for i in range(n+1):
+        if i == 0 :
+            x = 0
+        elif i == 1:
+            x = 1
+        else:
+            if i%2 == 0:
+                x = res[i//2]
+            else:
+                x = res[i//2] + res[(i+1)//2]
+        if x > res_max:
+            res_max = x
+        res.append(x)
+
+    return res_max
+
+print(gen_array(7))
+print(gen_array(2))
+print(gen_array(3))
