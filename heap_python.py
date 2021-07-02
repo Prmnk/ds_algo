@@ -36,3 +36,21 @@ arr = [ 2, 3, 4, 10, 40 ]
 x = 10
 
 print(binary_search(arr, 0, len(arr)-1, x))
+
+from heapq import heappop, heappush, heapify
+
+def findKthLargest(self, nums, k: int) -> int:
+    
+    #initialize heap
+    
+    heap_num = []
+    
+    for i in nums:
+        heappush(heap_num, -i) # -i for max heap
+        
+    
+    while k :
+        if k ==1:
+            return -1 * heappop(heap_num)
+        heappop(heap_num)
+        k -=1

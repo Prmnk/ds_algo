@@ -201,3 +201,92 @@ def TowerOfHanoi(n , from_rod, to_rod, aux_rod):
 # Driver code
 n = 4
 TowerOfHanoi(n, 'A', 'C', 'B')
+
+
+
+#https://leetcode.com/problems/two-sum-iv-input-is-a-bst/discuss/1011974/BFS-two-pointers-and-recursive
+def findTarget(root, k) -> bool:
+    queue = [root]
+    unique_set = set()
+    
+    while len(queue) > 0:
+        current = queue.pop()
+        if k - current.val in unique_set: return True
+        unique_set.add(current.val)
+        if current.left: queue.append(current.left)
+        if current.right: queue.append(current.right)
+    
+    return False
+
+
+# find if linkedlist is palindrome with o(N) time and o(1) space
+'''
+def isPalindrome( head) -> bool:
+    slow=fast=head
+    while(fast and fast.next):
+        slow=slow.next
+        fast=fast.next.next
+    prev=None
+    curr=slow
+    while(curr):
+        nextt=curr.next
+        curr.next=prev
+        prev=curr
+        curr=nextt
+    
+    while(prev):
+        if(prev.val!=head.val):
+            return False
+        prev=prev.next
+        head=head.next
+    return True
+'''
+def thirdMax( nums) :
+    
+    max_1 = nums[0]
+    max_2 = float('-inf')
+    max_3 = float('-inf')
+
+    if len(nums)<3:
+        return (max(nums))
+    
+    for i in range(len(nums)):
+        
+        if nums[i] > max_1 :
+            max_3 = max_2
+            max_2 = max_1            
+            max_1 = nums[i]
+            
+        elif nums[i] < max_1 and nums[i] > max_2 :
+            max_3 = max_2
+            max_2 = nums[i]
+            
+        elif nums[i] < max_2 and nums[i] > max_3 :
+            max_3 = nums[i]
+
+        print (nums[i], max_3, max_2, max_1)
+            
+
+   
+    return max_3  if max_3 != float('-inf') else max_1
+
+print(thirdMax([1,2,-2147483648]))
+
+from heapq import heappop, heappush, heapify
+
+def findKthLargest(self, nums, k: int) -> int:
+    
+    #initialize heap
+    
+    heap_num = []
+    
+    for i in nums:
+        heappush(heap_num, -i) # -i for max heap
+        
+    
+    while k :
+        if k ==1:
+            return -1 * heappop(heap_num)
+        heappop(heap_num)
+        k -=1
+

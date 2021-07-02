@@ -234,9 +234,15 @@ def mostCommonWord( paragraph, banned) -> str:
 
 #print(mostCommonWord("a, a, a, a, b,b,b,c, c","a"))
 
-st = 'abcdefg'
-
-st[3] = 't'
 
 
-print(st[:])
+test_list = [1, 3, 5, 6, 3, 5, 6, 1]
+print ("The original list is : " +  str(test_list))
+  
+# using list comprehension
+# to remove duplicated 
+# from list 
+res = []
+[res.append(x) for x in test_list if x not in res]
+
+print(res)
