@@ -290,3 +290,45 @@ def findKthLargest(self, nums, k: int) -> int:
         heappop(heap_num)
         k -=1
 
+
+def removeDuplicates(nums):
+    
+    if len(nums) == 1 or len(nums) == 0 :
+        return nums
+    
+    las_valid = 1
+
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i-1]:
+            nums[las_valid] = nums[i]
+            las_valid += 1
+
+    return las_valid
+print(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+
+
+def removeElement(self, nums, val: int) :
+    
+    last_valid = 0
+    
+    for i in range(len(nums)):
+        if nums[i] != val:
+            nums[last_valid] = nums[i]
+            last_valid +=1
+        
+    return last_valid
+
+def moveZeroes(self, nums):
+    """
+    Do not return anything, modify nums in-place instead.
+    """
+    
+    last_valid = 0
+    
+    for i in range(len(nums)):
+        if nums[i] != 0:
+            nums[last_valid] = nums[i]
+            last_valid += 1
+            
+    for k in range(last_valid, len(nums)):
+        nums[k] =0
