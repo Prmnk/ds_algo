@@ -332,3 +332,82 @@ def moveZeroes(self, nums):
             
     for k in range(last_valid, len(nums)):
         nums[k] =0
+
+
+def flatten(self, root: TreeNode) -> None:
+    """
+    Do not return anything, modify root in-place instead.
+    """
+    new_jad = TreeNode()#make new root to display linked list
+    jad = root
+    #preorder traversal iterative algo
+    if jad is None:
+        return
+    nodeStack = []
+    nodeStack.append(jad)
+    while(len(nodeStack) > 0):#root//left//right traversal
+        node = nodeStack.pop()
+        new_jad.left = None
+        new_jad.right = node#root
+        #print(node.val, end=" ")
+        if node.right:#right
+            nodeStack.append(node.right)
+        if node.left:#left
+            nodeStack.append(node.left)
+        new_jad = new_jad.right
+    return new_jad.right
+
+
+def smallerNumbersThanCurrent(self, nums) :
+    le = len(nums)
+    nums_sorted = sorted(nums)[::-1]
+    
+    res = []
+    dict = {}
+    for i in range(le):
+        if nums_sorted[i] in dict.keys():
+            dict[nums_sorted[i]] -= 1
+        else:                
+            dict[nums_sorted[i]] = le-i-1
+        
+    for i in nums:
+        res.append(dict[i])
+        
+    return res
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+    
+    if root1 is None or root2 is None:
+        return root1 or root2
+    
+    node = TreeNode(root1.val+root2.val)
+    
+    node.left = mergeTrees(root1.left, root2.left)
+    node.right = mergeTrees(root1.right, root2.right)
+    
+    return node
+
+
+def isBalanced(self, root: TreeNode) -> bool:
+    
+    def traverse(node, h):
+        
+        if node is None:
+            return 0
+        
+        
+        left_h = traverse(node.left, h + 1)
+        right_h = traverse(node.right, h + 1)
+        
+        if abs(left_h - right_h) > 1:
+            return float('inf')
+        
+        return 1 + max(left_h, right_h)
+    
+    return traverse(root,0) != float('inf')
