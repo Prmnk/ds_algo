@@ -334,7 +334,7 @@ def moveZeroes(self, nums):
         nums[k] =0
 
 
-def flatten(self, root: TreeNode) -> None:
+def flatten(self, root) -> None:
     """
     Do not return anything, modify root in-place instead.
     """
@@ -411,3 +411,119 @@ def isBalanced(self, root: TreeNode) -> bool:
         return 1 + max(left_h, right_h)
     
     return traverse(root,0) != float('inf')
+
+
+def numIdenticalPairs(self, nums) -> int:
+    
+    dict = {}
+    res = 0
+    
+    for i in range(len(nums)):
+        if nums[i] in dict.keys():
+            dict[nums[i]] += 1 
+        else:
+            dict[nums[i]] = 1
+        
+    for j in dict.keys():
+        n = dict[j]
+        res += n * (n-1)//2
+    
+    return int(res)
+
+def containsNearbyDuplicate(self, nums, k):
+    
+    dict ={}
+    l = []
+    
+    for i in range(len(nums)):
+        if nums[i] not in dict.keys():
+            dict[nums[i]] = i 
+        else:
+            l.append(i-dict[nums[i]])
+            dict[nums[i]] = i
+            
+            
+    if len(l) < 0 :
+        return False
+    
+    for num in l :
+        if num <= k:
+            return True
+    
+    return False
+
+def sumZero( n) :
+    res =[]
+    
+
+    if n%2 == 1 : res.append(0)
+
+    i = 1
+
+    while len(res) <n:
+        res.append(i)
+        res.append(-i)
+        i+=1
+
+    return res
+
+print ( sumZero(5))
+
+#f = open("filename.ext", "r")
+#for line in f:
+#    words = line.split()
+#    print(words[0], words[-1])
+
+
+
+def removeDuplicates_2( nums) :
+        dictionary= {}
+
+        length = len(nums)
+        i = 0
+
+        while i != length:
+            if nums[i] in dictionary:
+                if dictionary[nums[i]] < 2:
+                    dictionary[nums[i]] += 1
+                    i += 1
+                else:
+                    nums.pop(i)
+                    length -= 1
+            else:
+                dictionary[nums[i]] = 1
+                i += 1
+
+        return len(nums)
+
+def ExceltitleToNumber(self, x: str) -> int:
+    z=dict((j,i+1) for i,j in enumerate('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+    l=len(x)
+    s=0
+    for u in x:
+        s+=z[u]*((26)**(l-1))
+        l=l-1
+    return s
+
+def ExcelconvertToTitle(self, columnNumber: int) -> str:
+    
+    res = ''
+    n = columnNumber
+    
+    while  n > 0:
+        n -= 1
+        
+        res += chr( n% 26 + 65)
+        n //= 26
+        
+    return res[::-1]
+
+
+def sortedArrayToBST(self, nums) -> TreeNode:
+    if len(nums) == 0:
+        return None
+    mid = int(len(nums) // 2)
+    node = TreeNode(nums[mid])
+    node.left = self.sortedArrayToBST(nums[:mid])
+    node.right = self.sortedArrayToBST(nums[mid+1:])
+    return node
