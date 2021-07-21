@@ -246,3 +246,74 @@ res = []
 [res.append(x) for x in test_list if x not in res]
 
 print(res)
+
+def removeCoveredIntervals( intervals) -> int:
+    le = len(intervals)
+    cnt = le
+    for i in range(le):
+        for j in range(le) :
+            if i != j and intervals[j][0]<=intervals[i][0] and intervals[i][1] <= intervals[j][1]:
+                cnt -= 1
+                break
+                
+    return cnt
+
+#print(removeCoveredIntervals([[34335,39239],[15875,91969],[29673,66453],[53548,69161],[40618,93111]]))
+
+#test = [[34335,39239],[15875,91969],[29673,66453],[53548,69161],[40618,93111]]
+
+#print(sorted(test))
+
+def minCost( s, cost) :
+    
+    le = len(s)
+    if le ==1:
+        return 0
+    i = 0
+    res = 0#
+    while i < le-1:
+        if s[i]==s[i+1] and cost[i] <= cost[i+1]:
+            res += cost[i]
+            
+        elif s[i]==s[i+1] and cost[i]> cost[i+1]:
+            res += cost[i+1]
+            s = s[:i+1] + s[i+2:]
+            cost.pop(i+1)
+            le -= 1
+            i -= 1
+            
+        i += 1   
+        
+        
+    return res
+                
+#print( minCost("aaabbbabbbb",[3,5,10,7,5,3,5,5,4,8,1]))
+
+a = [3,5,10,7,5,3,5,5,4,8,1]
+
+b = ''.join(map(str,a))
+
+print (b)
+
+res = [int(i) for i in str(b)]
+#print(str(b).split(', '))
+print(res)
+
+def addStrings( num1: str, num2: str) -> str:
+    value = {str(i):i for i in range(0,10)}
+    
+    def converttoint(x):
+        out = 0
+        for i in x:
+            out = out * 10 + value[i]
+            
+        return out
+    
+    return (str(converttoint(num1)+converttoint(num2)))
+
+debts = ['a b c', 'd e f']
+debt = debts[0].split()
+print (debt)
+
+
+

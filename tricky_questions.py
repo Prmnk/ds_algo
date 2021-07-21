@@ -527,3 +527,87 @@ def sortedArrayToBST(self, nums) -> TreeNode:
     node.left = self.sortedArrayToBST(nums[:mid])
     node.right = self.sortedArrayToBST(nums[mid+1:])
     return node
+
+#Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    l3 = ListNode(1)
+    head = l3
+    s = 0
+    res = 0
+    while l1 or l2 or res> 0:
+        
+        if l1 is None:
+            l1 = ListNode(0)
+        if l2 is None:
+            l2 = ListNode(0)
+            
+        a = ListNode(0)            
+        
+        s = l1.val + l2.val + res
+        if s > 9:
+            res = 1
+            s -= 10
+            a.val = s 
+        
+        else:
+            a.val = s
+            res = 0
+            
+        l3.next = a
+        
+        l3 = l3.next    
+        l1 = l1.next
+        l2 = l2.next
+                
+    return head.next
+
+# n-ary tree
+def postorder(self, root):
+    
+    self.res = []
+    
+    if root is None:
+        return []
+    
+    def traverse_post(node):
+        
+        if node.children is not None:
+            for x in node.children :
+                traverse_post(x)
+                
+        self.res.append(node.val)
+                
+    traverse_post(root)       
+        
+    print (self.res)    
+    return self.res
+
+def levelOrder(self, root: TreeNode) ]:
+    if root is None:
+        return []
+    
+    res= []
+    queue = [root]
+    new_q = []
+    
+    while queue:
+        tmp=[]            
+        for n in queue:                
+            tmp.append(n.val)
+            
+            if n.left is not None:
+                new_q.append(n.left)
+            if n.right is not None:
+                new_q.append(n.right)
+                
+        res.append(tmp)
+        queue = new_q
+        new_q = []
+    
+    return res
+        
