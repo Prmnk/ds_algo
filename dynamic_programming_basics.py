@@ -72,7 +72,7 @@ def max_task_dp(high, low, n):
     task_dp[1] = high[0]
 
     for i in range(2,n+1):
-        task_dp[i] = max( high[i-1] +task_dp[i-2], low[i-1]+ task_dp[i-1] )
+        task_dp[i] = max( high[i-1] +task_dp[i-2]     ,     low[i-1]+ task_dp[i-1] )
 
     return task_dp[n]
 

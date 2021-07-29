@@ -297,7 +297,7 @@ print (b)
 
 res = [int(i) for i in str(b)]
 #print(str(b).split(', '))
-print(res)
+#print(res)
 
 def addStrings( num1: str, num2: str) -> str:
     value = {str(i):i for i in range(0,10)}
@@ -313,7 +313,11 @@ def addStrings( num1: str, num2: str) -> str:
 
 debts = ['a b c', 'd e f']
 debt = debts[0].split()
-print (debt)
+#print (debt)
+
+
+
+
 
 
 
